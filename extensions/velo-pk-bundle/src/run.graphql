@@ -1,0 +1,37 @@
+fragment hasTagsFragment on Product {
+  hasTags(tags: ["bundle","Leep","multibuy","bundle2","Leep","LEPP","nano-can"]) {
+  tag
+  hasTag
+}
+}
+ query RunInput {
+  cart {
+    lines {
+      ... on CartLine {
+        merchandise  {
+          ... on ProductVariant {
+            id      
+            title
+            product {  
+              id 
+              title
+              ...hasTagsFragment 
+              hasAnyTag(tags: ["bundle","Leep","multibuy","bundle2","Leep","LEPP","nano-can"])              
+            } 
+            }  
+            __typename
+          } 
+      }
+      quantity
+        cost{
+          ... on CartLineCost{
+            totalAmount{
+              ... on MoneyV2{
+                amount
+              }
+            } 
+          }
+        }
+      }
+    }
+}

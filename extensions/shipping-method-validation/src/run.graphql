@@ -1,0 +1,17 @@
+query RunInput {
+  cart {
+    deliveryGroups{
+      ... on CartDeliveryGroup{
+        deliveryAddress{
+          ... on MailingAddress{
+            city
+          }
+        }
+        deliveryOptions{
+          title
+          handle
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+query RunInput {
+  cart {
+    buyerIdentity {
+      customer {
+        numberOfOrders
+        metafield(namespace: "custom", key: "is_age_verified"){
+          value
+        }
+      }
+    }
+     deliveryGroups{
+      ... on CartDeliveryGroup{
+        deliveryAddress{
+          ... on MailingAddress{
+            city
+          }
+        }
+      }
+    }
+  }
+}
